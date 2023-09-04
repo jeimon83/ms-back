@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_01_004310) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_150046) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "antennas", force: :cascade do |t|
     t.string "cpa"
     t.string "location"
-    t.integer "customer_id", null: false
-    t.integer "service_id", null: false
-    t.integer "provider_id", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "service_id", null: false
     t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "provider_id"
     t.index ["customer_id"], name: "index_antennas_on_customer_id"
-    t.index ["provider_id"], name: "index_antennas_on_provider_id"
     t.index ["service_id"], name: "index_antennas_on_service_id"
   end
 
@@ -57,6 +59,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_004310) do
   end
 
   add_foreign_key "antennas", "customers"
-  add_foreign_key "antennas", "providers"
   add_foreign_key "antennas", "services"
 end
