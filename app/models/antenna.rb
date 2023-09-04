@@ -1,9 +1,9 @@
 class Antenna < ApplicationRecord
+  include AASM
+
   belongs_to :provider
 
-  enum state: { pending: 'pending', installed: 'installed', active: 'active', inactive: 'inactive' }
-
-  aasm column: 'state', enum: true do
+  aasm do
     state :pending, initial: true
     state :installed
     state :active
@@ -14,7 +14,7 @@ class Antenna < ApplicationRecord
     end
 
     event :activate do
-      transitions from: :installed, to: :active
+      transitions from: [:pending, :installed], to: :active
     end
 
     event :deactivate do
