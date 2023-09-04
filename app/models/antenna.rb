@@ -1,6 +1,4 @@
 class Antenna < ApplicationRecord
-  include AASM
-
   belongs_to :provider
 
   enum state: { pending: 'pending', installed: 'installed', active: 'active', inactive: 'inactive' }
