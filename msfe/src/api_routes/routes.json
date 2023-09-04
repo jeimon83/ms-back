@@ -1,6 +1,6 @@
 { 
   "services": {
-    "GET": "http://localhost:3000/api/v1/services"
+    "GET": "http://localhost:3000/api/v1/customers"
   },
   "customers": {
     "GET": "http://localhost:3000/api/v1/customers"

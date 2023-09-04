@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from 'react';
-import apiRoutes from '../api_routes/routes.json';
+
+const apiUrl = process.env.REACT_APP_API_URL
 
 function getAPICustomers() {
-  return axios.get(apiRoutes.customers.GET).then((response) => response.data)
+  return axios.get(apiUrl + "/customers").then((response) => response.data)
 }
 
 function Customers() {

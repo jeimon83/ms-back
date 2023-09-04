@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from 'react';
-import apiRoutes from '../api_routes/routes.json';
+
+const apiUrl = process.env.REACT_APP_API_URL
+console.log(apiUrl)
 
 function getAPIServices() {
-  return axios.get(apiRoutes.services.GET).then((response) => response.data)
+  return axios.get(apiUrl + "/services").then((response) => response.data)
 }
 
 function Services() {
