@@ -21,27 +21,10 @@
 #  fk_rails_...  (customer_id => customers.id)
 #  fk_rails_...  (service_id => services.id)
 #
-class Antenna < ApplicationRecord
-  include AASM
+require "test_helper"
 
-  belongs_to :customer
-
-  aasm column: 'state' do
-    state :pending, initial: true
-    state :installed
-    state :active
-    state :inactive
-
-    event :install do
-      transitions from: :pending, to: :installed
-    end
-
-    event :activate do
-      transitions from: %i[pending installed], to: :active
-    end
-
-    event :deactivate do
-      transitions from: :active, to: :inactive
-    end
-  end
+class AntennaTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

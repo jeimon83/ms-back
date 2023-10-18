@@ -21,27 +21,11 @@
 #  fk_rails_...  (customer_id => customers.id)
 #  fk_rails_...  (service_id => services.id)
 #
-class Antenna < ApplicationRecord
-  include AASM
 
-  belongs_to :customer
+one:
+  cpa: MyString
+  location: MyString
 
-  aasm column: 'state' do
-    state :pending, initial: true
-    state :installed
-    state :active
-    state :inactive
-
-    event :install do
-      transitions from: :pending, to: :installed
-    end
-
-    event :activate do
-      transitions from: %i[pending installed], to: :active
-    end
-
-    event :deactivate do
-      transitions from: :active, to: :inactive
-    end
-  end
-end
+two:
+  cpa: MyString
+  location: MyString

@@ -1,5 +1,5 @@
 class Api::V1::CustomersController < ApplicationController
-  before_action :set_customer, only: %i[ show update destroy ]
+  before_action :set_customer, only: %i[show update destroy]
 
   # GET /customers
   def index
@@ -8,8 +8,8 @@ class Api::V1::CustomersController < ApplicationController
     #   params[:name].gsub!(/\w+/, &:capitalize)
     #   render json: Customer.where("name LIKE ?", "%#{params[:name]}%").first
     # else
-     @customers = Customer.includes(:antennas).all
-     render json: @customers, include: :antennas
+    @customers = Customer.includes(:antennas).all
+    render json: @customers, include: :antennas
     # end
   end
 

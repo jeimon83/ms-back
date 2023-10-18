@@ -8,5 +8,11 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-class Service < ApplicationRecord
-end
+
+one:
+  type: 
+  velocity: MyString
+
+two:
+  type: 
+  velocity: MyString

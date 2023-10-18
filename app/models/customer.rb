@@ -18,11 +18,10 @@ class Customer < ApplicationRecord
   validates :contact, presence: true
 
   def self.search(search)
-    if search
-      search.downcase!
-      search.gsub!(/\w+/, &:capitalize)
-      Customer.where("name LIKE ?", "%#{search}%").first
-    end
-  end
+    return unless search
 
+    search.downcase!
+    search.gsub!(/\w+/, &:capitalize)
+    Customer.where('name LIKE ?', "%#{search}%").first
+  end
 end

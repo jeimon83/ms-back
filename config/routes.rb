@@ -2,7 +2,6 @@
 #
 
 Rails.application.routes.draw do
-
   root 'api/v1/customers#index'
 
   resource :session
@@ -20,5 +19,4 @@ Rails.application.routes.draw do
       resources :providers
     end
   end
-
 end
