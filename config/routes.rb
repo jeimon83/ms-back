@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   namespace :api do
     namespace :v1 do
       root 'customers#index'
@@ -10,8 +10,6 @@ Rails.application.routes.draw do
       resources :providers
     end
   end
-
-  devise_for :users
 
   root 'api/v1/customers#index'
 
