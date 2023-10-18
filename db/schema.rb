@@ -10,45 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2023_10_18_202325) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2023_09_01_003103) do
->>>>>>> main
+ActiveRecord::Schema[7.0].define(version: 20_230_901_003_103) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "antennas", force: :cascade do |t|
-    t.string "cpa"
-    t.string "location"
-    t.bigint "customer_id", null: false
-    t.bigint "service_id", null: false
-    t.boolean "status", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_antennas_on_customer_id"
-    t.index ["service_id"], name: "index_antennas_on_service_id"
+  create_table 'antennas', force: :cascade do |t|
+    t.string 'cpa'
+    t.string 'location'
+    t.bigint 'customer_id', null: false
+    t.bigint 'service_id', null: false
+    t.boolean 'status', default: true
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['customer_id'], name: 'index_antennas_on_customer_id'
+    t.index ['service_id'], name: 'index_antennas_on_service_id'
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'customers', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "providers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'providers', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "services", force: :cascade do |t|
-    t.string "service_type"
-    t.string "velocity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'services', force: :cascade do |t|
+    t.string 'service_type'
+    t.string 'velocity'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "antennas", "customers"
-  add_foreign_key "antennas", "services"
+  add_foreign_key 'antennas', 'customers'
+  add_foreign_key 'antennas', 'services'
 end
