@@ -1,5 +1,5 @@
 class Api::V1::ProvidersController < ApplicationController
-  before_action :set_provider, only: %i[ show update destroy ]
+  before_action :set_provider, only: %i[show update destroy]
 
   # GET /providers
   def index
@@ -18,7 +18,7 @@ class Api::V1::ProvidersController < ApplicationController
     @provider = Provider.new(provider_params)
 
     if @provider.save
-      render json: @provider, status: :created, location: @provider
+      render json: @provider, status: :created
     else
       render json: @provider.errors, status: :unprocessable_entity
     end
@@ -35,17 +35,22 @@ class Api::V1::ProvidersController < ApplicationController
 
   # DELETE /providers/1
   def destroy
-    @provider.destroy
+    if @provider.destroy
+      render json: { message: 'Provider was successfully deleted.' }
+    else
+      render json: @provider.errors, status: :unprocessable_entity
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_provider
-      @provider = Provider.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def provider_params
-      params.require(:provider).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_provider
+    @provider = Provider.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def provider_params
+    params.require(:provider).permit(:name)
+  end
 end

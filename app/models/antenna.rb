@@ -1,9 +1,30 @@
+# == Schema Information
+#
+# Table name: antennas
+#
+#  id          :bigint           not null, primary key
+#  cpa         :string
+#  location    :string
+#  service     :string
+#  state       :string           default("pending")
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  customer_id :bigint           not null
+#
+# Indexes
+#
+#  index_antennas_on_customer_id  (customer_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (customer_id => customers.id)
+#
 class Antenna < ApplicationRecord
   include AASM
 
-  belongs_to :provider
+  belongs_to :customer
 
-  aasm do
+  aasm column: 'state' do
     state :pending, initial: true
     state :installed
     state :active
@@ -14,7 +35,7 @@ class Antenna < ApplicationRecord
     end
 
     event :activate do
-      transitions from: [:pending, :installed], to: :active
+      transitions from: %i[pending installed], to: :active
     end
 
     event :deactivate do

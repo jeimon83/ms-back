@@ -1,11 +1,11 @@
 class Api::V1::AntennasController < ApplicationController
-  before_action :set_antenna, only: %i[ show update destroy ]
+  before_action :set_antenna, only: %i[show update destroy]
 
   # GET /antennas
   def index
-    @antennas = Antenna.all
+    @antennas = Antenna.includes(:customer).all
 
-    render json: @antennas
+    render json: @antennas, include: :customer
   end
 
   # GET /antennas/1
@@ -18,7 +18,7 @@ class Api::V1::AntennasController < ApplicationController
     @antenna = Antenna.new(antenna_params)
 
     if @antenna.save
-      render json: @antenna, status: :created, location: @antenna
+      render json: @antenna, status: :created
     else
       render json: @antenna.errors, status: :unprocessable_entity
     end
@@ -35,17 +35,22 @@ class Api::V1::AntennasController < ApplicationController
 
   # DELETE /antennas/1
   def destroy
-    @antenna.destroy
+    if @antenna.destroy
+      render json: { message: 'Antenna was successfully deleted.' }
+    else
+      render json: @antenna.errors, status: :unprocessable_entity
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_antenna
-      @antenna = Antenna.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def antenna_params
-      params.require(:antenna).permit(:cpa, :location)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_antenna
+    @antenna = Antenna.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def antenna_params
+    params.require(:antenna).permit(:cpa, :location, :customer_id, :service, :state)
+  end
 end
