@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Lista de clientes</h1>
+    <% @customers.each do |customer| %>
+        <p><%= customer.name %></p>
+        <p><%= customer.cuit %></p>
+        <p><%= customer.phone %></p>
+    <% end %>
+  </body>
+</html>
