@@ -5,7 +5,7 @@ class CreateAntennas < ActiveRecord::Migration[7.0]
       t.string :location
       t.references :customer, null: false, foreign_key: true
       t.string :service
-      t.boolean :state, default: 'pending'
+      t.string :state, default: 'pending'
 
       t.timestamps
     end

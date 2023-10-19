@@ -6,7 +6,7 @@
 #  cpa         :string
 #  location    :string
 #  service     :string
-#  state       :boolean          default(TRUE)
+#  state       :string           default("pending")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  customer_id :bigint           not null

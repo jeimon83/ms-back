@@ -10,51 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_018_202_325) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_18_202325) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'antennas', force: :cascade do |t|
-    t.string 'cpa'
-    t.string 'location'
-    t.bigint 'customer_id', null: false
-    t.string 'service'
-    t.boolean 'state', default: true
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['customer_id'], name: 'index_antennas_on_customer_id'
+  create_table "antennas", force: :cascade do |t|
+    t.string "cpa"
+    t.string "location"
+    t.bigint "customer_id", null: false
+    t.string "service"
+    t.string "state", default: "pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_antennas_on_customer_id"
   end
 
-  create_table 'customers', force: :cascade do |t|
-    t.string 'address'
-    t.string 'contact'
-    t.string 'cuit'
-    t.string 'email'
-    t.string 'name'
-    t.string 'phone'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "customers", force: :cascade do |t|
+    t.string "address"
+    t.string "contact"
+    t.string "cuit"
+    t.string "email"
+    t.string "name"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'providers', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "providers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'services', force: :cascade do |t|
-    t.string 'technology'
-    t.string 'bandwith'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "services", force: :cascade do |t|
+    t.string "technology"
+    t.string "bandwith"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email'
-    t.string 'password_digest'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key 'antennas', 'customers'
+  add_foreign_key "antennas", "customers"
 end
