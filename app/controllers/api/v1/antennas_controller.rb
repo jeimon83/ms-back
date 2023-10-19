@@ -44,12 +44,10 @@ class Api::V1::AntennasController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_antenna
     @antenna = Antenna.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def antenna_params
     params.require(:antenna).permit(:cpa, :location, :customer_id, :service, :state)
   end

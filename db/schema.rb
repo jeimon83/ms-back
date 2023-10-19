@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_901_003_103) do
+ActiveRecord::Schema[7.0].define(version: 20_231_018_202_325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -18,16 +18,20 @@ ActiveRecord::Schema[7.0].define(version: 20_230_901_003_103) do
     t.string 'cpa'
     t.string 'location'
     t.bigint 'customer_id', null: false
-    t.bigint 'service_id', null: false
-    t.boolean 'status', default: true
+    t.string 'service'
+    t.boolean 'state', default: true
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['customer_id'], name: 'index_antennas_on_customer_id'
-    t.index ['service_id'], name: 'index_antennas_on_service_id'
   end
 
   create_table 'customers', force: :cascade do |t|
+    t.string 'address'
+    t.string 'contact'
+    t.string 'cuit'
+    t.string 'email'
     t.string 'name'
+    t.string 'phone'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end
@@ -39,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 20_230_901_003_103) do
   end
 
   create_table 'services', force: :cascade do |t|
-    t.string 'service_type'
-    t.string 'velocity'
+    t.string 'technology'
+    t.string 'bandwith'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end
@@ -53,5 +57,4 @@ ActiveRecord::Schema[7.0].define(version: 20_230_901_003_103) do
   end
 
   add_foreign_key 'antennas', 'customers'
-  add_foreign_key 'antennas', 'services'
 end
