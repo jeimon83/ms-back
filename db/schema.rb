@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_18_202325) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_19_203553) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_202325) do
 
   create_table "services", force: :cascade do |t|
     t.string "technology"
-    t.string "bandwith"
+    t.string "bandwidth"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

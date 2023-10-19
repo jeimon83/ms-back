@@ -10,7 +10,7 @@ class Api::V1::AntennasController < ApplicationController
 
   # GET /antennas/1
   def show
-    render json: @antenna
+    render json: @antenna, include: :customer
   end
 
   # POST /antennas
